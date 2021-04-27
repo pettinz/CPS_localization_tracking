@@ -26,7 +26,7 @@ for it = 1:ni
     c = (it-1)*l_room+it;
     [xm,ym] = get_ref(c,l,p);  % position from measured cell
     
-    p1 = plot(xm,ym,'sb','MarkerSize',10);
+    p1 = plot(xm,ym,'sb','MarkerSize',10, 'DisplayName','Target');
     
     % RSS computation
     d = vecnorm(([xm,ym]-[xs(:),ys(:)])')';
@@ -45,7 +45,7 @@ for it = 1:ni
     
     [~, ce] = max(abs(xt)); % estimated cell
     [xe,ye] = get_ref(ce,l,p);  % position from estimated cell
-    p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5);
+    p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5, 'DisplayName','Estimated');
     
     dist(it)= norm([mean(xe),mean(ye)] - [xm,ym]);
  

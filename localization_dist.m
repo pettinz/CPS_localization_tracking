@@ -11,7 +11,7 @@ figure(1), hold on
 ni=50;
 lam = 1e-4;
 tau = 0.7;
-max_iter = 5e4;
+max_iter = 1e4;
 min_eps = 1e-6;
 success = 0;
 iter=zeros(ni,1);
@@ -22,8 +22,8 @@ cell=randperm(p, ni);
 
 for it=1:ni
     [xm,ym] = get_ref(cell(it),l,p);  % position from measured cell
-    p1 = plot(xm,ym,'sb','MarkerSize',10);
-    
+    p1 = plot(xm,ym,'sb','MarkerSize',10, 'DisplayName','Target');
+        
     d = vecnorm(([xm,ym]-[xs(:),ys(:)])')';
     y = get_rss(Pt,dev_std,d);
     
@@ -41,7 +41,7 @@ for it=1:ni
     
    [~, p_cell] = max(abs(xt));
    [xe,ye] = get_ref(p_cell,l,p);  % position from estimated cell
-   p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5);
+   p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5,'DisplayName','Estimated');
    dist(it)= norm([mode(xe) mode(ye)] - [xm ym]);
  
     if cell(it)==mode(p_cell)

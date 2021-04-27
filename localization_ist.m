@@ -25,8 +25,8 @@ cell=randperm(p, ni);
 for i=1:ni    
     [xm,ym] = get_ref(cell(i),l,p);  % position from measured cell
     
-    p1 = plot(xm,ym,'sb','MarkerSize',10);
-    
+    p1 = plot(xm,ym,'sb','MarkerSize',10, 'DisplayName','Target');
+        
     d = vecnorm(([xm,ym]-[xs(:),ys(:)])')';
     y = get_rss(Pt,dev_std,d);
     
@@ -43,7 +43,7 @@ for i=1:ni
     [~, p_cell] = max(abs(xt));
     [xe,ye] = get_ref(p_cell,l,p);  % position from estimated cell
     dist(i)= norm([xe ye] - [xm ym]);
-    p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5);
+    p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5,'DisplayName','Estimated');
 
     if cell(i)==p_cell
         fprintf('Success\n');

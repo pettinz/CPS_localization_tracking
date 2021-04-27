@@ -9,6 +9,6 @@ function make_grid_v2(xc,yc,xs,ys,size)
     ylim([0 size])
     
     title("Room grid")
-    legend
+    legend('Location', 'northeastoutside')
 end
 
