@@ -2,37 +2,10 @@ clear all
 close all
 clc
 
-%% Build map
-l_room = 10; 
-l = 1;
-p = 100;
-n = 25; % number of sensors
-
-% get cell coordinates using a meshgrid
-tmpc = .5:10;
-[xc,yc] = meshgrid(tmpc,tmpc);
-
-% get sensor coordinates using a meshgrid
-tmps = linspace(1,9,5);
-[xs,ys] = meshgrid(tmps,tmps);
+load cps_data
 
 figure(1)
 make_grid(xc,yc,xs,ys,l_room)
-
-Q = make_Q_grid(n);
-
-%% Build A
-Pt = 25;
-dev_std = 0.5;
-var = 0.5^2;
-
-A = zeros(n,p);
-for k = 1:p
-    [xm,ym] = get_ref(k,l,p);
-    d = vecnorm(([xm,ym]-[xs(:),ys(:)])')';
-    
-    A(:,k) = get_rss(Pt,dev_std,d);
-end
 
 %% O-DIST
 figure(1), hold on
