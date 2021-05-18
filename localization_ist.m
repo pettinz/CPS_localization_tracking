@@ -52,7 +52,7 @@ for i=1:ni
         fprintf('Fail\n');
     end
     fprintf('Cella: %d, Predetta: %d\n', cell(i), p_cell);
-    pause()
+    %pause()
     delete(p1)
     delete(p2)
 end
@@ -69,7 +69,7 @@ figure()
 plot([1:ni], iter, '--*')
 hold on 
 plot([1 ni], [mean(iter) mean(iter)], '--r')
-xlabel('iteration')
+xlabel('Test n°')
 ylabel('number of iterations')
 title('IST')
 ylim([min(iter) max(iter)])

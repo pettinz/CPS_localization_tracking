@@ -51,7 +51,7 @@ for it=1:ni
         fprintf('Fail\n');
     end
     fprintf('Cella: %d, Predetta: %d\n', cell(it), mode(p_cell));
-    pause()
+    %pause()
     delete(p1)
     delete(p2)
 end
@@ -62,7 +62,7 @@ plot([1:ni], dist, '--*')
 xlabel('iteration')
 ylabel('distance(m)')
 title('DIST')
-pause()
+%pause()
 
 figure()
 plot([1:ni], iter, '--*')
