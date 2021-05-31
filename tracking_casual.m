@@ -7,7 +7,7 @@ load cps_data
 figure(1)
 make_grid(xc,yc,xs,ys,l_room)
 
-%% O-DIST
+%% O-DIST-moving_casual
 figure(1), hold on
 
 lam = 1e-4;
@@ -16,14 +16,15 @@ max_iter = 1e2;
 min_eps = 1e-6;
 success = 0;
 
-ni = l_room;
-dist=zeros(l_room,1);
+ni = 50;
+dist=zeros(ni,1);
 
 [c_is_lower,Om,Apseudo] = reduce_coherence(A);
 xt_0 = zeros(p,n);
+position=randi([1, 100]);
 
 for it = 1:ni
-    c = (it-1)*l_room+it;
+    c = position;
     [xm,ym] = get_ref(c,l,p);  % position from measured cell
     
     p1 = plot(xm,ym,'sb','MarkerSize',10, 'DisplayName','Target');
@@ -57,7 +58,7 @@ for it = 1:ni
     end
     fprintf('Position: %d, Estimation: %d\n', c, mode(ce));
     
-    pause()
+    position=move(position, l_room);
     delete(p1), delete(p2)
 end
 
@@ -68,7 +69,7 @@ figure()
 plot([1:ni], dist, '--*')
 xlabel('iteration')
 ylabel('distance(m)')
-title('O-DIST')
+title(['O-DIST - Succes rate = ', num2str(success/ni*100), '%'])
 
 figure()
 plot([1:ni], cum_dist, '--*')
