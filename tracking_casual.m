@@ -12,8 +12,8 @@ figure(1), hold on
 
 lam = 1e-4;
 tau = 0.7;
-max_iter = 1e2;
-min_eps = 1e-6;
+max_iter = 1e3;
+min_eps = 1e-4;
 success = 0;
 
 ni = 50;
