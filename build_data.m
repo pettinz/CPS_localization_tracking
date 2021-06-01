@@ -9,8 +9,8 @@ p = 100;
 n = 25; % number of sensors
 
 prompt="Press 0 to use the random topology, Press 1 to use grid topology\n";
-%in = input(prompt);
-in=0;
+in = input(prompt);
+
 % get cell coordinates using a meshgrid
 tmpc = .5:10;
 [xc,yc] = meshgrid(tmpc,tmpc);
