@@ -1,6 +1,7 @@
 clear all
 close all
 clc
+addpath('./helpers');
 
 %% Build map
 l_room = 10; 
