@@ -13,7 +13,7 @@ figure(1), hold on
 lam = 1e-4;
 tau = 0.7;
 max_iter = 1e3;
-min_eps = 1e-4;
+min_eps = 1e-5;
 success = 0;
 
 ni = 50;
@@ -59,6 +59,7 @@ for it = 1:ni
     fprintf('Position: %d, Estimation: %d\n', c, mode(ce));
     
     position=move(position, l_room);
+    pause()
     delete(p1), delete(p2)
 end
 
