@@ -40,7 +40,7 @@ for i=1:ni
     
     [xt, iter(i)]=ist(max_iter, tau, Ap, yp, min_eps, lam);
     
-    [~, p_cell] = max(abs(xt));
+    [~, p_cell] = max((xt));
     [xe,ye] = get_ref(p_cell,l,p);  % position from estimated cell
     dist(i)= norm([xe ye] - [xm ym]);
     p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5,'DisplayName','Estimated');

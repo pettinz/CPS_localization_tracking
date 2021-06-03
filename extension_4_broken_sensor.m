@@ -66,7 +66,7 @@ for i=1:50
         xt(find(xt<0))=0;
         zt=[xt;u];
     end
-    [~, p_cell] = max(abs(xt));
+    [~, p_cell] = max(xt);
     [~, p_broken(1)] = max(abs(u));
     u(p_broken(1))=0;
     [~, p_broken(2)] = max(abs(u));

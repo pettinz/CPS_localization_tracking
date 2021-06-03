@@ -12,7 +12,7 @@ ni=50;
 lam = 1e-4;
 tau = 0.7;
 max_iter = 1e4;
-min_eps = 1e-4;
+min_eps = 1e-5;
 success = 0;
 iter=zeros(ni,1);
 dist=zeros(ni, 1);
@@ -39,7 +39,7 @@ for it=1:ni
     [xt, iter(it)]=distt(Ap, yp, xt_0, max_iter, Q, tau, lam, min_eps); 
     %round(xt,2) %% see if consensus
     
-   [~, p_cell] = max(abs(xt));
+   [~, p_cell] = max(xt);
    [xe,ye] = get_ref(p_cell,l,p);  % position from estimated cell
    p2 = scatter(xe, ye,'filled','MarkerEdgeColor',[0 .5 .5],'MarkerFaceColor',[0 .7 .7],'LineWidth',1.5,'DisplayName','Estimated');
    dist(it)= norm([mode(xe) mode(ye)] - [xm ym]);
