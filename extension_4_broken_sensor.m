@@ -13,7 +13,7 @@ ni=50;
 lam = 1e-4;
 tau = 0.7;
 th = 0.5;
-max_iter = 1e4;
+max_iter = 1e5;
 dist=zeros(ni, 1);
 success_brok=0;
 success=0;
@@ -32,7 +32,7 @@ for i=1:50
     
     d = vecnorm(([xm,ym]-[xs(:),ys(:)])')';
     y = get_rss(Pt,dev_std,d);
-    y(broken_sensor+1)=y(broken_sensor+1)+20*rand(1);
+    y(broken_sensor+1)=y(broken_sensor+1)+100*rand(1);
     
     B=[A, eye(n)];
     u=zeros(n, 1);
@@ -49,23 +49,17 @@ for i=1:50
     
     xt_0 = zeros(p,1);
     
-    zt=[xt_0; u];
+    zt_0=[xt_0; u];
     
     for j=1:max_iter
-        zt = zt-tau*(Bp'*(Bp*zt-yp));
-        for k=1:p
-            if abs(zt(k))<lam
-                zt(k)=0;
-            else
-                zt(k)=zt(k)-lam*sign(zt(k));
-            end
-        end
+        zt = soft_tresh(zt_0+tau.*(Bp'*(yp-Bp*zt_0)), lam);        
         xt=zt(1:p);
         u=zt(p+1:end);
         xt(find(xt>1))=1;
         xt(find(xt<0))=0;
-        zt=[xt;u];
+        zt_0=[xt;u];
     end
+
     [~, p_cell] = max(xt);
     [~, p_broken(1)] = max(abs(u));
     u(p_broken(1))=0;

@@ -35,7 +35,7 @@ make_grid(xc,yc,xs,ys,l_room)
 %% Build A
 Pt = 25;
 dev_std = 0.5;
-var = 0.5^2;
+var = dev_std^2;
 
 A = zeros(n,p);
 for k = 1:p
