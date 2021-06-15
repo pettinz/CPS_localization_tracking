@@ -1,4 +1,4 @@
-function make_grid_v2(xc,yc,xs,ys,size)
+function make_grid(xc,yc,xs,ys,size)
 %MAKE_GRID Summary of this function goes here
 %   Detailed explanation goes here
     scatter(xs(:),ys(:),'filled','DisplayName','Sensors'), grid on, hold on
